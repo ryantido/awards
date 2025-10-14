@@ -1,3 +1,4 @@
+import { About } from "@/components/sections/About";
 import { Hero } from "@/components/sections/Hero";
 import React from "react";
 
@@ -6,6 +7,7 @@ export default function MainPage() {
     <>
       <main className="relative min-h-dvh overflow-x-hidden">
         <Hero />
+        <About />
       </main>
       <footer></footer>
     </>
