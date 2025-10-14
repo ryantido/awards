@@ -7,28 +7,28 @@
 
 @layer base {
   @font-face {
-    font-family: 'circular-web';
-    src: url('/fonts/circularweb-book.woff2') format('woff2');
+    font-family: "circular-web";
+    src: url("/fonts/circularweb-book.woff2") format("woff2");
     font-display: swap;
   }
   @font-face {
-    font-family: 'general';
-    src: url('/fonts/general.woff2') format('woff2');
+    font-family: "general";
+    src: url("/fonts/general.woff2") format("woff2");
     font-display: swap;
   }
   @font-face {
-    font-family: 'robert-medium';
-    src: url('/fonts/robert-medium.woff2') format('woff2');
+    font-family: "robert-medium";
+    src: url("/fonts/robert-medium.woff2") format("woff2");
     font-display: swap;
   }
   @font-face {
-    font-family: 'robert-regular';
-    src: url('/fonts/robert-regular.woff2') format('woff2');
+    font-family: "robert-regular";
+    src: url("/fonts/robert-regular.woff2") format("woff2");
     font-display: swap;
   }
   @font-face {
-    font-family: 'zentry-regular';
-    src: url('/fonts/zentry-regular.woff2') format('woff2');
+    font-family: "zentry-regular";
+    src: url("/fonts/zentry-regular.woff2") format("woff2");
     font-display: swap;
   }
 }
@@ -44,12 +44,12 @@
   --color-bright-secondary: #edff66;
 
   --font-inter: var(--font-inter);
-  
-  --font-sans: 'general', system-ui, sans-serif;
-  --font-circular-web: 'circular-web', sans-serif;
-  --font-robert-regular: 'robert-regular', sans-serif;
-  --font-robert-medium: 'robert-medium', sans-serif;
-  --font-zentry: 'zentry-regular', sans-serif;
+
+  --font-sans: "general", system-ui, sans-serif;
+  --font-circular-web: "circular-web", sans-serif;
+  --font-robert-regular: "robert-regular", sans-serif;
+  --font-robert-medium: "robert-medium", sans-serif;
+  --font-zentry: "zentry-regular", sans-serif;
   --font-mono: ui-monospace, monospace;
 }
 

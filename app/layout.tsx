@@ -16,12 +16,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.variable} antialiased`}
-      >
-        <main className="container mx-auto min-h-dvh px-4 md:px-6 lg:px-8">
-          {children}
-        </main>
+      <body className={`${inter.variable} antialiased scroll-smooth`}>
+        {children}
       </body>
     </html>
   );
