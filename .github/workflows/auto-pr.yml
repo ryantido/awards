@@ -17,15 +17,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # (optionnel) étape de build ou modifications s’il y en a
-
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}   # PAS le GITHUB_TOKEN, mais un PAT stocké dans les secrets
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}   
           commit-message: "Auto changes"
-          branch: "${{ github.ref_name }}"   # ou spécifie une nouvelle branche
+          branch: "${{ github.ref_name }}"   
           base: main
           title: "Auto changes from push"
           body: "This PR was created automatically."
