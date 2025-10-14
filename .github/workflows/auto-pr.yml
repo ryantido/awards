@@ -17,30 +17,38 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create Pull Request
+      - name: Create or update PR
         id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}   
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}   # PAT, pas GITHUB_TOKEN
           commit-message: "Auto changes"
-          branch: "${{ github.ref_name }}"   
+          branch: "${{ github.ref_name }}"
           base: main
-          title: "Auto changes from push"
-          body: "This PR was created automatically."
+          title: "Auto changes from ${{ github.ref_name }}"
+          body: "This PR was created or updated automatically."
+          labels: automerge
+          delete-branch: false
+          draft: false
+          update-branch: true
 
-      - name: Add label to PR
+      - name: Display PR number
+        run: echo "Pull request number is ${{ steps.cpr.outputs.pull-request-number }}"
+
+      - name: Add automerge label (safety)
+        # Même si la PR existait déjà, on s’assure que le label est présent
         if: steps.cpr.outputs.pull-request-number != ''
         run: |
-          gh pr edit ${{ steps.cpr.outputs.pull-request-number }} --add-label automerge
+          gh pr edit ${{ steps.cpr.outputs.pull-request-number }} --add-label automerge || echo "PR already labeled"
         env:
           GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-      - name: Trigger second workflow
+      - name: Trigger merge workflow
         if: steps.cpr.outputs.pull-request-number != ''
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          event-type: "merge-pr"  
+          event-type: "merge-pr"
           client-payload: |
             {
               "pr_number": "${{ steps.cpr.outputs.pull-request-number }}"
