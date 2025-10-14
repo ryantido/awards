@@ -1,0 +1,47 @@
+name: Create and label PR
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  create_pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}   
+          commit-message: "Auto changes"
+          branch: "${{ github.ref_name }}"   
+          base: main
+          title: "Auto changes from push"
+          body: "This PR was created automatically."
+
+      - name: Add label to PR
+        if: steps.cpr.outputs.pull-request-number != ''
+        run: |
+          gh pr edit ${{ steps.cpr.outputs.pull-request-number }} --add-label automerge
+        env:
+          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      - name: Trigger second workflow
+        if: steps.cpr.outputs.pull-request-number != ''
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          event-type: "merge-pr"  
+          client-payload: |
+            {
+              "pr_number": "${{ steps.cpr.outputs.pull-request-number }}"
+            }
