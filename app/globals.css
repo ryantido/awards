@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-/* ----------------------------------------
-   🌈 Global Theme Variables
----------------------------------------- */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -13,6 +10,7 @@
   --color-bright-primary: #8e983f;
   --color-bright-secondary: #edff66;
 
+  --font-inter: var(--font-inter);
   --font-general: "general", system-ui, sans-serif;
   --font-circular-web: "circular-web", sans-serif;
   --font-robert-regular: "robert-regular", sans-serif;
@@ -21,24 +19,11 @@
   --font-mono: ui-monospace, monospace;
 }
 
-/* ----------------------------------------
-   🌍 Root Variables & Color Scheme
----------------------------------------- */
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-/* ----------------------------------------
-   🅰️ Base Layer (fonts, body, defaults)
----------------------------------------- */
 @layer base {
   @font-face {
     font-family: "circular-web";
@@ -66,6 +51,11 @@
     font-display: swap;
   }
 
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
   body {
     background-color: var(--background);
     color: var(--foreground);
@@ -74,11 +64,7 @@
   }
 }
 
-/* ----------------------------------------
-🧩 Components Layer
----------------------------------------- */
 @layer components {
-  /* --- Clip Paths --- */
   .mask-clip-path {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
@@ -92,7 +78,6 @@
     clip-path: polygon(29% 15%, 85% 30%, 50% 100%, 10% 64%);
   }
 
-  /* --- Loader Component --- */
   .three-body {
     --uib-size: 35px;
     --uib-speed: 0.8s;
@@ -158,11 +143,7 @@
   }
 }
 
-/* ----------------------------------------
-   🧮 Utilities Layer
----------------------------------------- */
 @layer utilities {
-
   .nav-hover-btn {
     @apply relative ms-10 font-general text-xs uppercase text-blue-50
       after:absolute after:-bottom-0.5 after:left-0 after:h-[2px]
@@ -171,6 +152,10 @@
       after:ease-[cubic-bezier(0.65_0.05_0.36_1)]
       hover:after:origin-bottom-left hover:after:scale-x-100
       dark:after:bg-white cursor-pointer;
+  }
+
+  .inline-padding {
+    @apply px-4 md:px-6 lg:px-8;
   }
 
   .floating-nav {
@@ -186,7 +171,7 @@
   }
 
   .hero-heading {
-    @apply uppercase font-zentry font-black text-5xl sm:right-10 sm:text-7xl md:text-9xl lg:text-[12rem];
+    @apply uppercase font-zentry font-black text-5xl;
   }
 
   .about-subtext {
@@ -217,7 +202,7 @@
   .bento-tilt_2 {
     @apply relative border border-white/20 col-span-1 row-span-1 overflow-hidden rounded-md transition-transform duration-300 ease-out;
   }
-  
+
   .bento-title {
     @apply uppercase md:text-6xl text-4xl font-black font-zentry;
   }
@@ -258,9 +243,11 @@
   }
 }
 
-/* ----------------------------------------
-   🎞️ Animations
----------------------------------------- */
+.special-font b {
+  font-family: "zentry-regular";
+  font-feature-settings: "ss01" on;
+}
+
 @keyframes indicator-line {
   0% {
     height: 4px;
@@ -286,7 +273,8 @@
 }
 
 @keyframes wobble1 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0%) scale(1);
     opacity: 1;
   }
@@ -297,7 +285,8 @@
 }
 
 @keyframes wobble2 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0%) scale(1);
     opacity: 1;
   }
