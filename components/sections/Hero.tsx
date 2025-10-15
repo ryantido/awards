@@ -167,8 +167,8 @@ export const Hero: React.FC = () => {
           />
         </button>
 
-        <div className="absolute top-8 z-30 flex flex-col justify-center px-8">
-          <h2 className="special-font hero-heading md:!text-8xl text-white mb-4">
+        <div className="absolute top-24 z-30 flex flex-col justify-center px-8">
+          <h2 className="special-font hero-heading md:!text-8xl text-white mb-4 max-md:tracking-wide">
             Redefi<b>n</b>ed
           </h2>
           <p className="max-w-64 text-blue-100 font-robert-regular mb-6">
