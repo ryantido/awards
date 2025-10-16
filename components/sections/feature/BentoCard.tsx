@@ -7,7 +7,12 @@ interface BentoCardProps {
   isComingSoon?: boolean;
 }
 
-export const BentoCard = ({ src, title, description, isComingSoon }: BentoCardProps) => {
+export const BentoCard = ({
+  src,
+  title,
+  description,
+  isComingSoon,
+}: BentoCardProps) => {
   const titleText = typeof title === "string" ? title : "Feature card";
   return (
     <article

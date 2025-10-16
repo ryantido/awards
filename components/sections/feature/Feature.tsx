@@ -1,4 +1,3 @@
-// app/components/sections/Feature.client.tsx
 "use client";
 
 import { useRef, useState } from "react";
@@ -89,7 +88,6 @@ export const Feature = () => {
   return (
     <section className="bg-black pb-52 text-blue-50">
       <div className="container mx-auto px-3 md:px-10">
-        {/* Intro */}
         <div className="px-5 py-32 text-center md:text-left">
           <p className="font-circular-web text-lg text-blue-50">
             The Modern Way to Award Your Team
@@ -101,7 +99,6 @@ export const Feature = () => {
           </p>
         </div>
 
-        {/* Bento Grid */}
         <BentoTilt className="mb-7 h-96 w-full border border-white/20 md:h-[65vh]">
           <BentoCard
             src="/videos/feature-1.mp4"

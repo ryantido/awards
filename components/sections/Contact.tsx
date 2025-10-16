@@ -22,9 +22,11 @@ const ImageClipBox = ({ src, alt = "", className }: ImageClipBoxProps) => (
 
 export const Contact = () => {
   return (
-    <section id="contact" className="my-20 min-h-96 w-full px-4 sm:px-10 relative">
+    <section
+      id="contact"
+      className="my-20 min-h-96 w-full px-4 sm:px-10 relative"
+    >
       <div className="relative rounded-lg bg-black py-24 text-blue-50 overflow-hidden">
-        {/* Left decorative images for md+ */}
         <div className="absolute inset-y-0 -left-24 hidden sm:block lg:left-10">
           <div className="relative h-full w-72 lg:w-96">
             <ImageClipBox
@@ -40,7 +42,6 @@ export const Contact = () => {
           </div>
         </div>
 
-        {/* Swordman images container */}
         <div
           className="
             absolute top-[-6rem] left-1/2 -translate-x-1/2
@@ -53,13 +54,11 @@ export const Contact = () => {
           aria-label="Swordman image"
         >
           <div className="relative w-full h-full">
-            {/* Partial swordman behind, slightly transparent and layered */}
             <ImageClipBox
               src="/img/swordman-partial.webp"
               alt="Swordman partial"
               className="absolute top-0 left-0 md:scale-125 opacity-60 -z-10"
             />
-            {/* Main swordman image */}
             <ImageClipBox
               src="/img/swordman.webp"
               alt="Swordman full"
@@ -68,9 +67,10 @@ export const Contact = () => {
           </div>
         </div>
 
-        {/* Main content */}
         <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-3xl mx-auto">
-          <p className="text-xs uppercase tracking-widest">Join our community</p>
+          <p className="text-xs uppercase tracking-widest">
+            Join our community
+          </p>
           <h2 className="special-font mt-10 font-zentry text-4xl leading-[1.1] md:text-7xl lg:text-8xl">
             <b>Let's build the new era of gaming together!</b>
           </h2>

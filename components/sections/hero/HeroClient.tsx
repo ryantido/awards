@@ -25,7 +25,7 @@ export const Hero: React.FC = () => {
   const startTransitionTimeline = (
     currentVideo: HTMLVideoElement,
     nextVideo: HTMLVideoElement,
-    newIndex: number
+    newIndex: number,
   ) => {
     const tl = gsap.timeline({
       defaults: { ease: "power2.inOut" },
@@ -36,18 +36,15 @@ export const Hero: React.FC = () => {
         gsap.set(nextVideo, { clearProps: "filter scale opacity" });
       },
     });
-  
-    // Smooth overlay fade to hide flash
+
     tl.to("#transition-overlay", { opacity: 1, duration: 0.25 }, 0);
-  
-    // Start blurring/dimming the current video
+
     tl.to(currentVideo, {
       filter: "blur(18px) brightness(0.25) saturate(0.7)",
       scale: 1.05,
       duration: 0.8,
     });
-  
-    // Now fade in the next video *while* current is still fading
+
     tl.to(
       nextVideo,
       {
@@ -55,30 +52,31 @@ export const Hero: React.FC = () => {
         filter: "blur(6px) brightness(0.7)",
         duration: 0.4,
         onStart: () => {
-          // ✅ Change index only when the next video is starting to fade in
           setCurrentIndex(newIndex);
         },
       },
-      "-=0.4" // overlap with previous blur
+      "-=0.4",
     )
-      .to(nextVideo, {
-        filter: "blur(0px) brightness(1) saturate(1)",
-        scale: 1,
-        duration: 1.2,
-      }, '+=0.1')
+      .to(
+        nextVideo,
+        {
+          filter: "blur(0px) brightness(1) saturate(1)",
+          scale: 1,
+          duration: 1.2,
+        },
+        "+=0.1",
+      )
       .to(
         currentVideo,
         {
           opacity: 0,
           duration: 0.6,
         },
-        "-=1.0"
+        "-=1.0",
       );
-  
-    // Fade overlay out once transition is nearly complete
+
     tl.to("#transition-overlay", { opacity: 0, duration: 0.6 }, "-=0.3");
   };
-  
 
   const handleHeroClick = React.useCallback(() => {
     if (isTransitioning) return;
@@ -107,7 +105,7 @@ export const Hero: React.FC = () => {
 
     const start = () =>
       requestAnimationFrame(() =>
-        startTransitionTimeline(currentVideo, nextVideo, newIndex)
+        startTransitionTimeline(currentVideo, nextVideo, newIndex),
       );
 
     if (nextVideo.readyState >= 3) start();
@@ -119,7 +117,6 @@ export const Hero: React.FC = () => {
     }
   }, [currentIndex, isTransitioning]);
 
-  // Prevent flash & set clipPath
   useGSAP(() => {
     const vA = videoARef.current;
     const vB = videoBRef.current;
@@ -153,7 +150,6 @@ export const Hero: React.FC = () => {
 
   return (
     <section className="relative h-dvh overflow-hidden">
-      {/* Transition veil */}
       <div
         id="transition-overlay"
         className="pointer-events-none absolute inset-0 bg-black/40 opacity-0 z-40 transition-opacity duration-300"
@@ -161,7 +157,6 @@ export const Hero: React.FC = () => {
       />
 
       <div id="video-frame" className="relative z-10 h-dvh overflow-hidden">
-        {/* Videos */}
         <video
           ref={videoARef}
           src={getVideoPath(currentIndex)}
@@ -186,7 +181,6 @@ export const Hero: React.FC = () => {
           className="absolute inset-0 size-full object-cover opacity-0 blur-md brightness-75"
         />
 
-        {/* Hero content */}
         <div className="absolute top-24 z-30 flex flex-col justify-center px-8">
           <h2 className="special-font hero-heading md:!text-8xl text-white mb-4 max-md:tracking-wide">
             Redefi<b>n</b>ed
@@ -203,12 +197,10 @@ export const Hero: React.FC = () => {
           />
         </div>
 
-        {/* Foreground wordmark */}
         <h1 className="special-font hero-heading absolute bottom-5 right-5 z-30 text-blue-50 md:!text-8xl tracking-wide">
           G<b>a</b>ming
         </h1>
 
-        {/* 👇 Preview button (desktop & large screens only) */}
         <button
           aria-label={`Switch to video ${nextIndex}`}
           onClick={handleHeroClick}
@@ -237,7 +229,6 @@ export const Hero: React.FC = () => {
           />
         </button>
 
-        {/* 👇 Safe tap/click area for mobile & tablet */}
         <button
           aria-label={`Switch to video ${nextIndex}`}
           onClick={handleHeroClick}
@@ -251,7 +242,6 @@ export const Hero: React.FC = () => {
         />
       </div>
 
-      {/* Background wordmark (revealed by clipPath) */}
       <h1 className="special-font hero-heading absolute bottom-5 right-5 z-0 text-black/90 md:!text-8xl tracking-wide">
         G<b>a</b>ming
       </h1>
