@@ -56,6 +56,7 @@ export const About = () => {
             fill
             className="object-cover absolute top-0 left-0"
             priority
+            loading="lazy"
           />
         </div>
       </div>

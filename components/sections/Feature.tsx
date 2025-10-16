@@ -94,7 +94,7 @@ export const Feature = () => {
             src="/videos/feature-1.mp4"
             title={
               <>
-                r<b>a</b>di<b>n</b>t
+                r<b>a</b>di<b>a</b>nt
               </>
             }
             description="A modern way to reward your team and celebrate their achievements with rewards and recognition."

@@ -60,6 +60,7 @@ export const Story = () => {
                   onMouseEnter={handleMouseLeave}
                   onMouseMove={handleMouseMove}
                   className="object-contain rounded-lg"
+                  loading="lazy"
                 />
               </div>
             </div>

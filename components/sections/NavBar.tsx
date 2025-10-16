@@ -62,10 +62,10 @@ export const NavBar = () => {
       <div className="absolute top-1/2 w-full -translate-y-1/2">
         <nav className="flex size-full items-center justify-between p-4">
           <section className="flex items-center gap-7">
-            <Image src="/img/logo.png" alt="Logo" width={50} height={50} />
+            <Image src="/img/logo.png" alt="Logo" loading="lazy" width={50} height={50} />
             <Button
               id="product-button"
-              label="Products"
+              label="Products"              
               rightIcon={<TiLocationArrow />}
               className="hidden !bg-blue-50 !text-blue-400 font-inter md:flex items-center justify-center gap-1 font-medium"
             />

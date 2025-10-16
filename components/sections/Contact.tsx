@@ -15,7 +15,7 @@ const ImageClipBox = ({ src, alt = "", className }: ImageClipBoxProps) => (
       width={500}
       height={500}
       className="object-contain w-full h-auto"
-      priority
+      loading="lazy"
     />
   </div>
 );
