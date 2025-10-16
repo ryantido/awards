@@ -18,6 +18,20 @@ export const NavBar = () => {
   const [isNavVisible, setIsNavVisible] = useState<boolean>(true);
   const { y: currentScrollY } = useWindowScroll();
 
+  // Store random animation timings in state, initialize empty
+  const [indicatorTimings, setIndicatorTimings] = useState<
+    { delay: number; duration: number }[]
+  >([]);
+
+  // Generate random timings once on mount (client-side)
+  useEffect(() => {
+    const timings = Array.from({ length: 4 }).map(() => ({
+      delay: Math.random() * 0.5,
+      duration: 0.4 + Math.random() * 0.6,
+    }));
+    setIndicatorTimings(timings);
+  }, []);
+
   useEffect(() => {
     if (currentScrollY === 0) {
       setIsNavVisible(true);
@@ -46,6 +60,7 @@ export const NavBar = () => {
     setIsAudioPlaying((prev) => !prev);
     setIsIndicatorActive((prev) => !prev);
   };
+
   useEffect(() => {
     if (isAudioPlaying) {
       audioElementRef.current?.play();
@@ -65,7 +80,7 @@ export const NavBar = () => {
             <Image src="/img/logo.png" alt="Logo" loading="lazy" width={50} height={50} />
             <Button
               id="product-button"
-              label="Products"              
+              label="Products"
               rightIcon={<TiLocationArrow />}
               className="hidden !bg-blue-50 !text-blue-400 font-inter md:flex items-center justify-center gap-1 font-medium"
             />
@@ -74,42 +89,26 @@ export const NavBar = () => {
             <ul className="hidden md:flex">
               {NAV_LINKS.map((link) => (
                 <li key={link}>
-                  <Link
-                    href={`#${link.toLowerCase()}`}
-                    className="nav-hover-btn"
-                  >
+                  <Link href={`#${link.toLowerCase()}`} className="nav-hover-btn">
                     {link}
                   </Link>
                 </li>
               ))}
             </ul>
-            <button
-              className="ml-10 flex items-center space-x-1"
-              onClick={toggleAudioIndicator}
-            >
-              <audio
-                ref={audioElementRef}
-                className="hidden"
-                src="/audio/loop.mp3"
-                loop
-              />
-
+            <button className="ml-10 flex items-center space-x-1" onClick={toggleAudioIndicator}>
+              <audio ref={audioElementRef} className="hidden" src="/audio/loop.mp3" loop />
               <div className="flex items-end space-x-[2px]">
-                {Array.from({ length: 4 }).map((_, index) => {
-                  const randomDelay = Math.random() * 0.5;
-                  const randomDuration = 0.4 + Math.random() * 0.6;
-
-                  return (
+                {indicatorTimings.length === 4 &&
+                  indicatorTimings.map(({ delay, duration }, index) => (
                     <div
                       key={index}
                       className={`indicator-line ${isIndicatorActive ? "active" : ""}`}
                       style={{
-                        animationDelay: `${randomDelay}s`,
-                        animationDuration: `${randomDuration}s`,
+                        animationDelay: `${delay}s`,
+                        animationDuration: `${duration}s`,
                       }}
                     />
-                  );
-                })}
+                  ))}
               </div>
             </button>
           </section>

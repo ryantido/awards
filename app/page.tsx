@@ -1,8 +1,9 @@
-import { About } from "@/components/sections/About";
+
+import { About } from "@/components/sections/about/About";
 import { Contact } from "@/components/sections/Contact";
-import { Feature } from "@/components/sections/Feature";
-import { Hero } from "@/components/sections/Hero";
-import { Story } from "@/components/sections/Story";
+import { Feature } from "@/components/sections/feature/Feature";
+import { Hero } from "@/components/sections/hero/HeroClient";
+import { Story } from "@/components/sections/story/Story";
 import { FOOTER_LINKS } from "@/constants/footerLinks";
 import Link from "next/link";
 import React from "react";
