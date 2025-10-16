@@ -22,8 +22,9 @@ const ImageClipBox = ({ src, alt = "", className }: ImageClipBoxProps) => (
 
 export const Contact = () => {
   return (
-    <section id="contact" className="my-20 min-h-96 w-full px-4 sm:px-10">
+    <section id="contact" className="my-20 min-h-96 w-full px-4 sm:px-10 relative">
       <div className="relative rounded-lg bg-black py-24 text-blue-50 overflow-hidden">
+        {/* Left decorative images for md+ */}
         <div className="absolute inset-y-0 -left-24 hidden sm:block lg:left-10">
           <div className="relative h-full w-72 lg:w-96">
             <ImageClipBox
@@ -39,13 +40,26 @@ export const Contact = () => {
           </div>
         </div>
 
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:top-1/2 md:right-10 lg:top-20 lg:w-80">
-          <div className="relative w-60 md:w-72">
+        {/* Swordman images container */}
+        <div
+          className="
+            absolute top-[-6rem] left-1/2 -translate-x-1/2
+            w-64 h-auto z-50
+            opacity-100
+            transition-all duration-700 ease-in-out
+            sm:static sm:left-auto sm:top-auto sm:translate-x-0 sm:w-72 sm:h-auto
+            md:absolute md:right-10 md:top-20 md:w-80 md:h-auto
+          "
+          aria-label="Swordman image"
+        >
+          <div className="relative w-full h-full">
+            {/* Partial swordman behind, slightly transparent and layered */}
             <ImageClipBox
               src="/img/swordman-partial.webp"
               alt="Swordman partial"
-              className="absolute md:scale-125"
+              className="absolute top-0 left-0 md:scale-125 opacity-60 -z-10"
             />
+            {/* Main swordman image */}
             <ImageClipBox
               src="/img/swordman.webp"
               alt="Swordman full"
@@ -54,11 +68,10 @@ export const Contact = () => {
           </div>
         </div>
 
-        <div className="relative z-10 flex flex-col items-center text-center px-4">
-          <p className="text-xs uppercase tracking-widest">
-            Join our community
-          </p>
-          <h2 className="special-font mt-10 w-full font-zentry text-4xl leading-[1.1] md:text-7xl lg:text-8xl md:max-w-2xl">
+        {/* Main content */}
+        <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-3xl mx-auto">
+          <p className="text-xs uppercase tracking-widest">Join our community</p>
+          <h2 className="special-font mt-10 font-zentry text-4xl leading-[1.1] md:text-7xl lg:text-8xl">
             <b>Let's build the new era of gaming together!</b>
           </h2>
           <Button

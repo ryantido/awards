@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
-import { AnimatedTitle } from "../AnimatedTitle";
+import { AnimatedTitle } from "@/components/AnimatedTitle";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,10 +35,10 @@ export const About = () => {
 
         <AnimatedTitle
           title="Disc<b>o</b>ver the w<b>o</b>rld's <br /> best l<b>a</b>ndmarks with Zentry!"
-          className="mt-5 text-center text-4xl uppercase leading-[0.8] md:text-8xl !text-black"
+          className="mt-5 text-center text-4xl uppercase leading-[0.8] md:text-8xl"
         />
         <div className="about-subtext max-w-lg px-4 text-center text-base md:text-lg font-circular-web text-white/90 leading-relaxed mx-auto">
-          <p className="mb-3">
+          <p className="mb-2">
             The Game of Games begins—your life, now an epic MMORPG.
           </p>
           <p>
@@ -56,7 +56,6 @@ export const About = () => {
             fill
             className="object-cover absolute top-0 left-0"
             priority
-            loading="lazy"
           />
         </div>
       </div>
