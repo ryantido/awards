@@ -18,12 +18,10 @@ export const NavBar = () => {
   const [isNavVisible, setIsNavVisible] = useState<boolean>(true);
   const { y: currentScrollY } = useWindowScroll();
 
-  // Store random animation timings in state, initialize empty
   const [indicatorTimings, setIndicatorTimings] = useState<
     { delay: number; duration: number }[]
   >([]);
 
-  // Generate random timings once on mount (client-side)
   useEffect(() => {
     const timings = Array.from({ length: 4 }).map(() => ({
       delay: Math.random() * 0.5,
@@ -77,7 +75,13 @@ export const NavBar = () => {
       <div className="absolute top-1/2 w-full -translate-y-1/2">
         <nav className="flex size-full items-center justify-between p-4">
           <section className="flex items-center gap-7">
-            <Image src="/img/logo.png" alt="Logo" loading="lazy" width={50} height={50} />
+            <Image
+              src="/img/logo.png"
+              alt="Logo"
+              loading="lazy"
+              width={50}
+              height={50}
+            />
             <Button
               id="product-button"
               label="Products"
@@ -89,14 +93,25 @@ export const NavBar = () => {
             <ul className="hidden md:flex">
               {NAV_LINKS.map((link) => (
                 <li key={link}>
-                  <Link href={`#${link.toLowerCase()}`} className="nav-hover-btn">
+                  <Link
+                    href={`#${link.toLowerCase()}`}
+                    className="nav-hover-btn"
+                  >
                     {link}
                   </Link>
                 </li>
               ))}
             </ul>
-            <button className="ml-10 flex items-center space-x-1" onClick={toggleAudioIndicator}>
-              <audio ref={audioElementRef} className="hidden" src="/audio/loop.mp3" loop />
+            <button
+              className="ml-10 flex items-center space-x-1"
+              onClick={toggleAudioIndicator}
+            >
+              <audio
+                ref={audioElementRef}
+                className="hidden"
+                src="/audio/loop.mp3"
+                loop
+              />
               <div className="flex items-end space-x-[2px]">
                 {indicatorTimings.length === 4 &&
                   indicatorTimings.map(({ delay, duration }, index) => (

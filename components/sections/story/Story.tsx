@@ -41,7 +41,10 @@ export const Story = () => {
   };
 
   return (
-    <section id="story" className="w-screen bg-black text-blue-50 overflow-hidden">
+    <section
+      id="story"
+      className="w-screen bg-black text-blue-50 overflow-hidden"
+    >
       <div className="flex flex-col items-center py-10 relative">
         <p className="text-sm uppercase tracking-widest text-blue-200">
           The Multiversal IP World
@@ -99,7 +102,8 @@ export const Story = () => {
           "
         >
           <p className="font-circular-web text-violet-50 md:text-lg leading-relaxed text-center lg:max-w-[60%]">
-            Where the story begins — the journey of a multiversal IP world starts.
+            Where the story begins — the journey of a multiversal IP world
+            starts.
           </p>
           <Button
             id="realm-button"
