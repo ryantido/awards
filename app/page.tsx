@@ -1,4 +1,5 @@
 import { About } from "@/components/sections/About";
+import { Contact } from "@/components/sections/Contact";
 import { Feature } from "@/components/sections/Feature";
 import { Hero } from "@/components/sections/Hero";
 import { Story } from "@/components/sections/Story";
@@ -12,6 +13,7 @@ export default function MainPage() {
         <About />
         <Feature />
         <Story />
+        <Contact />
       </main>
       <footer></footer>
     </>

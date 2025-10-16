@@ -37,18 +37,17 @@ export const Story = () => {
     });
   };
   return (
-    <section id="story" className="min-h-dvh w-screen bg-black text-blue-50">
-      <div className="flex size-full flex-col items-center py-10 pb-24">
+    <section id="story" className="w-screen bg-black text-blue-50">
+      <div className="flex size-full flex-col items-center py-10">
         <p className="text-sm uppercase md:text-[10px]">
           the multiversal ip World
         </p>
         <div className="relative size-full">
           <AnimatedTitle
             title="The st<b>o</b>ry of <br /> a multiversal <b>IP</b>"
-            // sectionId="#story"
             className="mt-5 pointer-events-none mix-blend-difference relative z-10 "
           />
-          <div className="story-img-container rounded-lg">
+          <div className="story-img-container rounded-lg rotate-[8deg]">
             <div className="story-img-mask rounded-lg">
               <div className="story-img-content rounded-lg">
                 <Image
@@ -66,7 +65,7 @@ export const Story = () => {
             </div>
           </div>
         </div>
-        <div className="flex h-full items-center w-fit flex-col md:items-start self-end -translate-y-80 md:-translate-y-64 md:me-44">
+        <div className="flex items-center w-fit flex-col md:items-start self-end -translate-y-80 md:-translate-y-64 md:me-44">
           <p className="mt-3 max-w-sm text-center font-circular-web text-violet-50 md:text-start">
             Where the story begins, the journey of a multiversal IP World
             starts.
